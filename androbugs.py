@@ -2099,7 +2099,7 @@ Vulnerable codes:
 
 	if list_setJavaScriptEnabled_XSS:
 		writer.startWriter("WEBVIEW_JS_ENABLED", LEVEL_WARNING, "WebView Potential XSS Attacks Checking", 
-			"Found \"setJavaScriptEnabled(true)\" in WebView, which could exposed to potential XSS attacks. Please check the web page code carefully and sanitize the output:", ["WebView"])
+			"Found \"setJavaScriptEnabled(true)\" in WebView, which could expose to potential XSS attacks. Please check the web page code carefully and sanitize the output:", ["WebView"])
 		for i in list_setJavaScriptEnabled_XSS:
 			writer.show_Path(d, i)
 	else:
@@ -2800,7 +2800,7 @@ Related Cases: (1)http://blog.curesec.com/article/blog/35.html
 		if list_alerting_exposing_components_NonGoogle:
 			writer.startWriter("PERMISSION_EXPORTED", LEVEL_WARNING, "AndroidManifest Exported Components Checking",
 				"""Found "exported" components(except for Launcher) for receiving outside applications' actions (AndroidManifest.xml). 
-These components can be initilized by other apps. You should add or modify the attribute to [exported="false"] if you don't want to. 
+These components can be initialized by other apps. You should add or modify the attribute to [exported="false"] if you don't want to. 
 You can also protect it with a customized permission with "signature" or higher protectionLevel and specify in "android:permission" attribute.""")
 
 			for i in list_alerting_exposing_components_NonGoogle:
@@ -3007,7 +3007,7 @@ Proof-Of-Concept Reference:
 	#Reference to <<Essential_Block_1>>
 	if isUsingSQLCipher :
 		writer.startWriter("DB_SQLCIPHER", LEVEL_NOTICE, "Android SQLite Databases Encryption (SQLCipher)",
-			"This app is using SQLCipher(http://sqlcipher.net/) to encrypt or decrpyt databases.", ["Database"])
+			"This app is using SQLCipher(http://sqlcipher.net/) to encrypt or decrypt databases.", ["Database"])
 
 		path_sqlcipher_dbs = vmx.get_tainted_packages().search_sqlcipher_databases()	#Don't do the exclusion checking on this one because it's not needed
 
@@ -3044,11 +3044,11 @@ Proof-Of-Concept Reference:
 
 	if has_SSE_databases :
 		writer.startWriter("DB_SEE", LEVEL_NOTICE, "Android SQLite Databases Encryption (SQLite Encryption Extension (SEE))",
-			"This app is using SQLite Encryption Extension (SEE) on Android (http://www.sqlite.org/android) to encrypt or decrpyt databases.", ["Database"])
+			"This app is using SQLite Encryption Extension (SEE) on Android (http://www.sqlite.org/android) to encrypt or decrypt databases.", ["Database"])
 	
 	else :
 		writer.startWriter("DB_SEE", LEVEL_INFO, "Android SQLite Databases Encryption (SQLite Encryption Extension (SEE))",
-			"This app is \"NOT\" using SQLite Encryption Extension (SEE) on Android (http://www.sqlite.org/android) to encrypt or decrpyt databases.", ["Database"])
+			"This app is \"NOT\" using SQLite Encryption Extension (SEE) on Android (http://www.sqlite.org/android) to encrypt or decrypt databases.", ["Database"])
 
 	# ------------------------------------------------------------------------
 	#Searching SQLite "PRAGMA key" encryption:
